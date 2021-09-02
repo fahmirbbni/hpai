@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +24,9 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transaction = Transaction::all();
+
+        return view('transaction.index', compact('transaction'));
     }
 
     /**
@@ -23,7 +36,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        return view('transaction.create');
     }
 
     /**
@@ -34,7 +47,18 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'number' => 'required',
+            'address' => 'required',
+            'transaction_total' => 'required',
+            'transaction_status' => 'required',
+        ]);
+
+        Transaction::create($request->all());
+        return redirect()->route('transaction.index')
+            ->with('success', 'Transaction created successfully.');
     }
 
     /**
@@ -43,9 +67,9 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Transaction $transaction)
     {
-        //
+        return view('transaction.show', compact('transaction'));
     }
 
     /**
@@ -54,9 +78,10 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Transaction $transaction)
     {
-        //
+        return view('transaction.edit', compact('transaction'));
+
     }
 
     /**
@@ -66,9 +91,13 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Transaction $transaction)
     {
-        //
+        //membuat variabel transakso, kemudian mengupdate semua data yang di request
+        $transaction->update($request->all());
+
+        //memberikan respon balikan halaman index dengan menyertakan pesan
+        return redirect()->route('transaction.index')->with('success', 'Transaction updated successfully!');
     }
 
     /**
@@ -77,8 +106,12 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Transaction $transaction)
     {
-        //
+    //membuat variabel transaksi kemudian jalankan fungsi hapus
+    $transaction->delete();
+
+    //memberikan respon balikan ke halaman index dengan menyertakan pesan
+    return redirect()->route('transaction.index')->with('success', 'Transaction deleted successfully!');
     }
 }

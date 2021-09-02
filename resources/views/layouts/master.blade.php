@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Blank Page &mdash; Stisla</title>
+  <title>Tugas HPAI</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -12,8 +12,8 @@
   <!-- CSS Libraries -->
 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="{{asset('/assets/css/style.css')}}">
+  <link rel="stylesheet" href="{{asset('/assets/css/components.css')}}">
 </head>
 
 <body>
@@ -71,28 +71,20 @@
       <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html">Stisla</a>
+            <a href="{{route('product.index')}}">Origin</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
+            <a href="{{route('transaction.index')}}">FR</a>
           </div>
           <ul class="sidebar-menu">
-              <li class="menu-header">Dashboard</li>
-              <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-                <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="index-0.html">General Dashboard</a></li>
-                  <li><a class="nav-link" href="index.html">Ecommerce Dashboard</a></li>
-                </ul>
-              </li>
               <li class="menu-header">Product and Transaction</li>
               <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Option</span></a>
                 <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="layout-default.html">Create Product</a></li>
+                  <li><a class="nav-link" href="{{route('product.create')}}">Create Product</a></li>
                   <li><a class="nav-link" href="{{route('product.index')}}">Product</a></li>
-                  <li><a class="nav-link" href="layout-top-navigation.html">Create Transaction</a></li>
-                  <li><a class="nav-link" href="layout-default.html">Transaction</a></li>
+                  <li><a class="nav-link" href="{{route('transaction.create')}}">Create Transaction</a></li>
+                  <li><a class="nav-link" href="{{route('transaction.index')}}">Transaction</a></li>
                 </ul>
               </li>
          
@@ -138,8 +130,8 @@
   <!-- JS Libraies -->
 
   <!-- Template JS File -->
-  <script src="../assets/js/scripts.js"></script>
-  <script src="../assets/js/custom.js"></script>
+  <script src="{{asset('/assets/js/scripts.js')}}"></script>
+  <script src="{{asset('/assets/js/custom.js')}}"></script>
 
   <!-- Page Specific JS File -->
 </body>
