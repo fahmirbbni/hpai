@@ -93,7 +93,7 @@ class TransactionController extends Controller
      */
     public function update(Request $request,Transaction $transaction)
     {
-        //membuat variabel transakso, kemudian mengupdate semua data yang di request
+        //membuat variabel transaksi, kemudian mengupdate semua data yang di request
         $transaction->update($request->all());
 
         //memberikan respon balikan halaman index dengan menyertakan pesan

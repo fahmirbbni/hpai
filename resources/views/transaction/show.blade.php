@@ -51,5 +51,6 @@
 
     <div style="float: left;">
         <a class="btn btn-primary" href="{{ route('transaction.index') }}"> < Back</a>
+        <a class="btn btn-warning" href="{{$transaction->id}}/report" target="_blank" >Report</a>
     </div>
 @endsection
